@@ -1,16 +1,12 @@
 # Car Rental Reservation System
 
-## Car Rental Reservation System Backend
-
-You have been assigned the task of building the backend for a Car Renting System. The main focus of this assignment is to implement error handling, CRUD operations, authentication, and authorization, Transaction & Rollback (If necessary)
-
 ## Story
 
 Imagine you own a car rental business. To keep track of your cars and manage customer rentals, you've decided to built a web app with a database designed based on the following models:
 
-- User Model
-- Car Model
-- Booking Model
+-   User Model
+-   Car Model
+-   Booking Model
 
 With these models as the foundation, you can build a powerful web app for your car rental business. This app will allow both admins and users to interact smoothly with the booking system:
 
@@ -34,9 +30,9 @@ Both users and administrators need to register and log in to the car rental web 
 
 ## Technology Stack:
 
-- Use TypeScript as the programming language.
-- Use Express.js as the web framework.
-- Use Mongoose as the Object Data Modeling (ODM) and validation library for MongoDB
+-   Use TypeScript as the programming language.
+-   Use Express.js as the web framework.
+-   Use Mongoose as the Object Data Modeling (ODM) and validation library for MongoDB
 
 ## Main Part: (50 Marks)
 
@@ -44,34 +40,34 @@ Both users and administrators need to register and log in to the car rental web 
 
 ### **User Model:**
 
-- **name**: The name of the entity or user.
-- **email**: The contact email address.
-- **role**: There will be two types of users:
-  - user
-  - admin
-- **password**: The account password.
-- **phone**: The contact phone number.
-- **address**: The physical address.
+-   **name**: The name of the entity or user.
+-   **email**: The contact email address.
+-   **role**: There will be two types of users:
+    -   user
+    -   admin
+-   **password**: The account password.
+-   **phone**: The contact phone number.
+-   **address**: The physical address.
 
 ### **Car Model:**
 
-- **name**: The name of the car.
-- **description**: A brief description of what the car entails.
-- **color:** The color of the car.
-- **isElectric**: Boolean to indicate if the car is electric.
-- **status**: The availability of the car. By default, the status will be `available.`
-- **features**: An array listing the features of the car (e.g., \["Bluetooth", "AC", "Sunroof"\]).
-- **pricePerHour**: The cost per hour of the booking in the local currency.
-- **isDeleted**: Indicates whether the car has been marked as deleted (false means it is not deleted).
+-   **name**: The name of the car.
+-   **description**: A brief description of what the car entails.
+-   **color:** The color of the car.
+-   **isElectric**: Boolean to indicate if the car is electric.
+-   **status**: The availability of the car. By default, the status will be `available.`
+-   **features**: An array listing the features of the car (e.g., \["Bluetooth", "AC", "Sunroof"\]).
+-   **pricePerHour**: The cost per hour of the booking in the local currency.
+-   **isDeleted**: Indicates whether the car has been marked as deleted (false means it is not deleted).
 
 ### **Booking Model:**
 
-- **date**: The date of the booking.
-- **user**: Identifier for the user. **_(reference to user model)_**
-- **car**: Identifier for the booked car. **_(reference to car model)_**
-- **startTime**: The start time of the booking. The time will be in 24hr format.
-- **endTime:** The end time of the booking. The time will be in 24hr format.
-- **totalCost**: The total cost will be calculated using `startTime`, `endTime` and `pricePerHour` data. By default totalCost will be `0`.
+-   **date**: The date of the booking.
+-   **user**: Identifier for the user. **_(reference to user model)_**
+-   **car**: Identifier for the booked car. **_(reference to car model)_**
+-   **startTime**: The start time of the booking. The time will be in 24hr format.
+-   **endTime:** The end time of the booking. The time will be in 24hr format.
+-   **totalCost**: The total cost will be calculated using `startTime`, `endTime` and `pricePerHour` data. By default totalCost will be `0`.
 
 ## API Endpoints
 
@@ -83,12 +79,12 @@ Both users and administrators need to register and log in to the car rental web 
 
 ```json
 {
-  "name": "John Doe",
-  "email": "johndoe@example.com",
-  "role": "user", // role can be user or admin
-  "password": "password123",
-  "phone": "1234567890",
-  "address": "123 Main St, City, Country"
+    "name": "John Doe",
+    "email": "johndoe@example.com",
+    "role": "user", // role can be user or admin
+    "password": "password123",
+    "phone": "1234567890",
+    "address": "123 Main St, City, Country"
 }
 ```
 
@@ -96,19 +92,19 @@ Both users and administrators need to register and log in to the car rental web 
 
 ```json
 {
-  "success": true,
-  "statusCode": 201,
-  "message": "User registered successfully",
-  "data": {
-    "_id": "6071f0fbf98b210012345678",
-    "name": "John Doe",
-    "email": "johndoe@example.com",
-    "role": "user",
-    "phone": "1234567890",
-    "address": "123 Main St, City, Country",
-    "createdAt": "2024-06-10T12:00:00.000Z",
-    "updatedAt": "2024-06-10T12:00:00.000Z"
-  }
+    "success": true,
+    "statusCode": 201,
+    "message": "User registered successfully",
+    "data": {
+        "_id": "6071f0fbf98b210012345678",
+        "name": "John Doe",
+        "email": "johndoe@example.com",
+        "role": "user",
+        "phone": "1234567890",
+        "address": "123 Main St, City, Country",
+        "createdAt": "2024-06-10T12:00:00.000Z",
+        "updatedAt": "2024-06-10T12:00:00.000Z"
+    }
 }
 ```
 
@@ -122,8 +118,8 @@ Both users and administrators need to register and log in to the car rental web 
 
 ```json
 {
-  "email": "johndoe@example.com",
-  "password": "password123"
+    "email": "johndoe@example.com",
+    "password": "password123"
 }
 ```
 
@@ -131,20 +127,20 @@ Both users and administrators need to register and log in to the car rental web 
 
 ```json
 {
-  "success": true,
-  "statusCode": 200,
-  "message": "User logged in successfully",
-  "data": {
-    "_id": "6071f0fbf98b210012345678",
-    "name": "John Doe",
-    "email": "johndoe@example.com",
-    "role": "user",
-    "phone": "1234567890",
-    "address": "123 Main St, City, Country",
-    "createdAt": "2024-06-10T12:00:00.000Z",
-    "updatedAt": "2024-06-10T12:00:00.000Z"
-  },
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9... (your JWT token)"
+    "success": true,
+    "statusCode": 200,
+    "message": "User logged in successfully",
+    "data": {
+        "_id": "6071f0fbf98b210012345678",
+        "name": "John Doe",
+        "email": "johndoe@example.com",
+        "role": "user",
+        "phone": "1234567890",
+        "address": "123 Main St, City, Country",
+        "createdAt": "2024-06-10T12:00:00.000Z",
+        "updatedAt": "2024-06-10T12:00:00.000Z"
+    },
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9... (your JWT token)"
 }
 ```
 
@@ -166,12 +162,12 @@ You must include "Bearer" at the beginning of the token! Do not copy and apply d
 
 ```json
 {
-  "name": "Tesla Model 3",
-  "description": "An electric car with advanced technology and performance.",
-  "color": "White",
-  "isElectric": true,
-  "features": ["AC", "Bluetooth", "Long Range Battery"],
-  "pricePerHour": 500
+    "name": "Tesla Model 3",
+    "description": "An electric car with advanced technology and performance.",
+    "color": "White",
+    "isElectric": true,
+    "features": ["AC", "Bluetooth", "Long Range Battery"],
+    "pricePerHour": 500
 }
 ```
 
@@ -179,22 +175,22 @@ You must include "Bearer" at the beginning of the token! Do not copy and apply d
 
 ```json
 {
-  "success": true,
-  "statusCode": 201,
-  "message": "Car created successfully",
-  "data": {
-    "_id": "608a6d8d03a1b40012abcdef",
-    "name": "Tesla Model 3",
-    "description": "An electric car with advanced technology and performance.",
-    "color": "White",
-    "isElectric": true,
-    "features": ["AC", "Bluetooth", "Long Range Battery"],
-    "pricePerHour": 500,
-    "status": "available",
-    "isDeleted": false,
-    "createdAt": "2024-04-28T12:00:00.000Z",
-    "updatedAt": "2024-04-28T12:00:00.000Z"
-  }
+    "success": true,
+    "statusCode": 201,
+    "message": "Car created successfully",
+    "data": {
+        "_id": "608a6d8d03a1b40012abcdef",
+        "name": "Tesla Model 3",
+        "description": "An electric car with advanced technology and performance.",
+        "color": "White",
+        "isElectric": true,
+        "features": ["AC", "Bluetooth", "Long Range Battery"],
+        "pricePerHour": 500,
+        "status": "available",
+        "isDeleted": false,
+        "createdAt": "2024-04-28T12:00:00.000Z",
+        "updatedAt": "2024-04-28T12:00:00.000Z"
+    }
 }
 ```
 
@@ -206,25 +202,25 @@ You must include "Bearer" at the beginning of the token! Do not copy and apply d
 
 ```json
 {
-  "success": true,
-  "statusCode": 200,
-  "message": "Cars retrieved successfully",
-  "data": [
-    {
-      "_id": "608a6d8d03a1b40012abcdef",
-      "name": "Tesla Model 3",
-      "description": "An electric car with advanced technology and performance.",
-      "color": "White",
-      "isElectric": true,
-      "features": ["AC", "Bluetooth", "Long Range Battery"],
-      "pricePerHour": 500,
-      "status": "available",
-      "isDeleted": false,
-      "createdAt": "2024-04-28T12:00:00.000Z",
-      "updatedAt": "2024-04-28T12:00:00.000Z"
-    }
-    // more data
-  ]
+    "success": true,
+    "statusCode": 200,
+    "message": "Cars retrieved successfully",
+    "data": [
+        {
+            "_id": "608a6d8d03a1b40012abcdef",
+            "name": "Tesla Model 3",
+            "description": "An electric car with advanced technology and performance.",
+            "color": "White",
+            "isElectric": true,
+            "features": ["AC", "Bluetooth", "Long Range Battery"],
+            "pricePerHour": 500,
+            "status": "available",
+            "isDeleted": false,
+            "createdAt": "2024-04-28T12:00:00.000Z",
+            "updatedAt": "2024-04-28T12:00:00.000Z"
+        }
+        // more data
+    ]
 }
 ```
 
@@ -236,22 +232,22 @@ You must include "Bearer" at the beginning of the token! Do not copy and apply d
 
 ```json
 {
-  "success": true,
-  "statusCode": 200,
-  "message": "A Car retrieved successfully",
-  "data": {
-    "_id": "608a6d8d03a1b40012abcdef",
-    "name": "Tesla Model 3",
-    "description": "An electric car with advanced technology and performance.",
-    "color": "White",
-    "isElectric": true,
-    "features": ["AC", "Bluetooth", "Long Range Battery"],
-    "pricePerHour": 500,
-    "status": "available",
-    "isDeleted": false,
-    "createdAt": "2024-04-28T12:00:00.000Z",
-    "updatedAt": "2024-04-28T12:00:00.000Z"
-  }
+    "success": true,
+    "statusCode": 200,
+    "message": "A Car retrieved successfully",
+    "data": {
+        "_id": "608a6d8d03a1b40012abcdef",
+        "name": "Tesla Model 3",
+        "description": "An electric car with advanced technology and performance.",
+        "color": "White",
+        "isElectric": true,
+        "features": ["AC", "Bluetooth", "Long Range Battery"],
+        "pricePerHour": 500,
+        "status": "available",
+        "isDeleted": false,
+        "createdAt": "2024-04-28T12:00:00.000Z",
+        "updatedAt": "2024-04-28T12:00:00.000Z"
+    }
 }
 ```
 
@@ -272,7 +268,7 @@ You must include "Bearer" at the beginning of the token!
 
 ```json
 {
-  "color": "Black" // we will have to update all the fields including name, description, color, isElectric, features, pricePerHour, etc.
+    "color": "Black" // we will have to update all the fields including name, description, color, isElectric, features, pricePerHour, etc.
 }
 ```
 
@@ -280,22 +276,22 @@ You must include "Bearer" at the beginning of the token!
 
 ```json
 {
-  "success": true,
-  "statusCode": 200,
-  "message": "Car updated successfully",
-  "data": {
-    "_id": "608a6d8d03a1b40012abcdef",
-    "name": "Tesla Model 3",
-    "description": "An electric car with advanced technology and performance.",
-    "color": "Black",
-    "isElectric": true,
-    "features": ["AC", "Bluetooth", "Long Range Battery"],
-    "pricePerHour": 500,
-    "status": "available",
-    "isDeleted": false,
-    "createdAt": "2024-04-28T12:00:00.000Z",
-    "updatedAt": "2024-04-29T12:00:00.000Z"
-  }
+    "success": true,
+    "statusCode": 200,
+    "message": "Car updated successfully",
+    "data": {
+        "_id": "608a6d8d03a1b40012abcdef",
+        "name": "Tesla Model 3",
+        "description": "An electric car with advanced technology and performance.",
+        "color": "Black",
+        "isElectric": true,
+        "features": ["AC", "Bluetooth", "Long Range Battery"],
+        "pricePerHour": 500,
+        "status": "available",
+        "isDeleted": false,
+        "createdAt": "2024-04-28T12:00:00.000Z",
+        "updatedAt": "2024-04-29T12:00:00.000Z"
+    }
 }
 ```
 
@@ -318,22 +314,22 @@ You must include "Bearer" at the beginning of the token!
 
 ```json
 {
-  "success": true,
-  "statusCode": 200,
-  "message": "Car Deleted successfully",
-  "data": {
-    "_id": "608a6d8d03a1b40012abcdef",
-    "name": "Tesla Model 3",
-    "description": "An electric car with advanced technology and performance.",
-    "color": "Black",
-    "isElectric": true,
-    "features": ["AC", "Bluetooth", "Long Range Battery"],
-    "pricePerHour": 500,
-    "status": "available",
-    "isDeleted": true,
-    "createdAt": "2024-04-28T12:00:00.000Z",
-    "updatedAt": "2024-05-29T12:00:00.000Z"
-  }
+    "success": true,
+    "statusCode": 200,
+    "message": "Car Deleted successfully",
+    "data": {
+        "_id": "608a6d8d03a1b40012abcdef",
+        "name": "Tesla Model 3",
+        "description": "An electric car with advanced technology and performance.",
+        "color": "Black",
+        "isElectric": true,
+        "features": ["AC", "Bluetooth", "Long Range Battery"],
+        "pricePerHour": 500,
+        "status": "available",
+        "isDeleted": true,
+        "createdAt": "2024-04-28T12:00:00.000Z",
+        "updatedAt": "2024-05-29T12:00:00.000Z"
+    }
 }
 ```
 
@@ -343,8 +339,8 @@ You must include "Bearer" at the beginning of the token!
 
 **Query Parameters:**
 
-- `carId`: ID of the car for which availability needs to be checked.
-- `date`: The specific date for which availability needs to be checked (format: YYYY-MM-DD).
+-   `carId`: ID of the car for which availability needs to be checked.
+-   `date`: The specific date for which availability needs to be checked (format: YYYY-MM-DD).
 
 Example Request:
 
@@ -354,42 +350,42 @@ Example Request:
 
 ```json
 {
-  "success": true,
-  "statusCode": 200,
-  "message": "Bookings retrieved successfully",
-  "data": [
-    {
-      "_id": "60d9c4e4f3b4b544b8b8d1c7",
-      "date": "2024-06-15",
-      "startTime": "13:00",
-      "endTime": null, // it will be null by default, when booked. It will be updated by the admin, when the car is returned.
-      "user": {
-        "_id": "6071f0fbf98b210012345688",
-        "name": "Tom",
-        "email": "tom@example.com",
-        "role": "user",
-        "phone": "1234567890",
-        "address": "123 Main St, City, Country"
-      },
-      "car": {
-        "_id": "608a6d8d03a1b40012abcdef",
-        "name": "Tesla Model 3",
-        "description": "An electric car with advanced technology and performance.",
-        "color": "White",
-        "isElectric": true,
-        "features": ["AC", "Bluetooth", "Long Range Battery"],
-        "pricePerHour": 500,
-        "status": "unavailable",
-        "isDeleted": false,
-        "createdAt": "2024-04-28T12:00:00.000Z",
-        "updatedAt": "2024-04-28T12:00:00.000Z"
-      },
-      "totalCost": 0, // it will be 0 by default, when booked. It will be calculate and update by the admin, when the car is returned.
-      "createdAt": "2024-04-28T12:00:00.000Z",
-      "updatedAt": "2024-05-29T12:00:00.000Z"
-    }
-    //...additional bookings...
-  ]
+    "success": true,
+    "statusCode": 200,
+    "message": "Bookings retrieved successfully",
+    "data": [
+        {
+            "_id": "60d9c4e4f3b4b544b8b8d1c7",
+            "date": "2024-06-15",
+            "startTime": "13:00",
+            "endTime": null, // it will be null by default, when booked. It will be updated by the admin, when the car is returned.
+            "user": {
+                "_id": "6071f0fbf98b210012345688",
+                "name": "Tom",
+                "email": "tom@example.com",
+                "role": "user",
+                "phone": "1234567890",
+                "address": "123 Main St, City, Country"
+            },
+            "car": {
+                "_id": "608a6d8d03a1b40012abcdef",
+                "name": "Tesla Model 3",
+                "description": "An electric car with advanced technology and performance.",
+                "color": "White",
+                "isElectric": true,
+                "features": ["AC", "Bluetooth", "Long Range Battery"],
+                "pricePerHour": 500,
+                "status": "unavailable",
+                "isDeleted": false,
+                "createdAt": "2024-04-28T12:00:00.000Z",
+                "updatedAt": "2024-04-28T12:00:00.000Z"
+            },
+            "totalCost": 0, // it will be 0 by default, when booked. It will be calculate and update by the admin, when the car is returned.
+            "createdAt": "2024-04-28T12:00:00.000Z",
+            "updatedAt": "2024-05-29T12:00:00.000Z"
+        }
+        //...additional bookings...
+    ]
 }
 ```
 
@@ -411,9 +407,9 @@ You must include "Bearer" at the beginning of the token!
 
 ```json
 {
-  "carId": "60d9c4e4f3b4b544b8b8d1c7",
-  "date": "2024-06-15",
-  "startTime": "13:00"
+    "carId": "60d9c4e4f3b4b544b8b8d1c7",
+    "date": "2024-06-15",
+    "startTime": "13:00"
 }
 ```
 
@@ -421,39 +417,39 @@ You must include "Bearer" at the beginning of the token!
 
 ```json
 {
-  "success": true,
-  "statusCode": 200,
-  "message": "Car booked successfully",
-  "data": {
-    "_id": "60d9c4e4f3b4b544b8b8d1c7",
-    "date": "2024-06-15",
-    "startTime": "13:00",
-    "endTime": null, // it will be null by default, when booked. It will be updated by the admin, when the car is returned.
-    "user": {
-      "_id": "6071f0fbf98b210012345688",
-      "name": "Tom",
-      "email": "tom@example.com",
-      "role": "user",
-      "phone": "1234567890",
-      "address": "123 Main St, City, Country"
-    },
-    "car": {
-      "_id": "608a6d8d03a1b40012abcdef",
-      "name": "Tesla Model 3",
-      "description": "An electric car with advanced technology and performance.",
-      "color": "White",
-      "isElectric": true,
-      "features": ["AC", "Bluetooth", "Long Range Battery"],
-      "pricePerHour": 500,
-      "status": "unavailable",
-      "isDeleted": false,
-      "createdAt": "2024-04-28T12:00:00.000Z",
-      "updatedAt": "2024-04-28T12:00:00.000Z"
-    },
-    "totalCost": 0, // it will be 0 by default, when booked. It will be calculate and update by the admin, when the car is returned.
-    "createdAt": "2024-04-28T12:00:00.000Z",
-    "updatedAt": "2024-05-29T12:00:00.000Z"
-  }
+    "success": true,
+    "statusCode": 200,
+    "message": "Car booked successfully",
+    "data": {
+        "_id": "60d9c4e4f3b4b544b8b8d1c7",
+        "date": "2024-06-15",
+        "startTime": "13:00",
+        "endTime": null, // it will be null by default, when booked. It will be updated by the admin, when the car is returned.
+        "user": {
+            "_id": "6071f0fbf98b210012345688",
+            "name": "Tom",
+            "email": "tom@example.com",
+            "role": "user",
+            "phone": "1234567890",
+            "address": "123 Main St, City, Country"
+        },
+        "car": {
+            "_id": "608a6d8d03a1b40012abcdef",
+            "name": "Tesla Model 3",
+            "description": "An electric car with advanced technology and performance.",
+            "color": "White",
+            "isElectric": true,
+            "features": ["AC", "Bluetooth", "Long Range Battery"],
+            "pricePerHour": 500,
+            "status": "unavailable",
+            "isDeleted": false,
+            "createdAt": "2024-04-28T12:00:00.000Z",
+            "updatedAt": "2024-04-28T12:00:00.000Z"
+        },
+        "totalCost": 0, // it will be 0 by default, when booked. It will be calculate and update by the admin, when the car is returned.
+        "createdAt": "2024-04-28T12:00:00.000Z",
+        "updatedAt": "2024-05-29T12:00:00.000Z"
+    }
 }
 ```
 
@@ -477,42 +473,42 @@ You must include "Bearer" at the beginning of the token!
 
 ```json
 {
-  "success": true,
-  "statusCode": 200,
-  "message": "My Bookings retrieved successfully",
-  "data": [
-    {
-      "_id": "60d9c4e4f3b4b544b8b8d1c7",
-      "date": "2024-06-15",
-      "startTime": "13:00",
-      "endTime": "15:00",
-      "user": {
-        "_id": "6071f0fbf98b210012345688",
-        "name": "Tom",
-        "email": "tom@example.com",
-        "role": "user",
-        "phone": "1234567890",
-        "address": "123 Main St, City, Country"
-      },
-      "car": {
-        "_id": "608a6d8d03a1b40012abcdef",
-        "name": "Tesla Model 3",
-        "description": "An electric car with advanced technology and performance.",
-        "color": "White",
-        "isElectric": true,
-        "features": ["AC", "Bluetooth", "Long Range Battery"],
-        "pricePerHour": 500,
-        "status": "unavailable",
-        "isDeleted": false,
-        "createdAt": "2024-04-28T12:00:00.000Z",
-        "updatedAt": "2024-04-28T12:00:00.000Z"
-      },
-      "totaCost": 1000,
-      "createdAt": "2024-04-28T12:00:00.000Z",
-      "updatedAt": "2024-05-29T12:00:00.000Z"
-    }
-    // ...additional bookings...
-  ]
+    "success": true,
+    "statusCode": 200,
+    "message": "My Bookings retrieved successfully",
+    "data": [
+        {
+            "_id": "60d9c4e4f3b4b544b8b8d1c7",
+            "date": "2024-06-15",
+            "startTime": "13:00",
+            "endTime": "15:00",
+            "user": {
+                "_id": "6071f0fbf98b210012345688",
+                "name": "Tom",
+                "email": "tom@example.com",
+                "role": "user",
+                "phone": "1234567890",
+                "address": "123 Main St, City, Country"
+            },
+            "car": {
+                "_id": "608a6d8d03a1b40012abcdef",
+                "name": "Tesla Model 3",
+                "description": "An electric car with advanced technology and performance.",
+                "color": "White",
+                "isElectric": true,
+                "features": ["AC", "Bluetooth", "Long Range Battery"],
+                "pricePerHour": 500,
+                "status": "unavailable",
+                "isDeleted": false,
+                "createdAt": "2024-04-28T12:00:00.000Z",
+                "updatedAt": "2024-04-28T12:00:00.000Z"
+            },
+            "totaCost": 1000,
+            "createdAt": "2024-04-28T12:00:00.000Z",
+            "updatedAt": "2024-05-29T12:00:00.000Z"
+        }
+        // ...additional bookings...
+    ]
 }
 ```
 
@@ -536,8 +532,8 @@ You must include "Bearer" at the beginning of the token!
 
 ```json
 {
-  "bookingId": "60d9c4e4f3b4b544b8b8d1c7",
-  "endTime": "15:00"
+    "bookingId": "60d9c4e4f3b4b544b8b8d1c7",
+    "endTime": "15:00"
 }
 ```
 
@@ -585,9 +581,9 @@ You must include "Bearer" at the beginning of the token!
 
 ## Hints for `totalCost` calculation:
 
-- **Convert Times to Hours:** The `startTime` and `endTime` are in `24 hour` format. Convert them to hours for calculating.
-- **Calculate Duration:** Subtract `startTime` from `endTime` to find the total duration in hours.
-- **Multiply by Price per Hour:** Once you have the duration in hours, multiply it by the`pricePerHour` to get the total cost.
+-   **Convert Times to Hours:** The `startTime` and `endTime` are in `24 hour` format. Convert them to hours for calculating.
+-   **Calculate Duration:** Subtract `startTime` from `endTime` to find the total duration in hours.
+-   **Multiply by Price per Hour:** Once you have the duration in hours, multiply it by the`pricePerHour` to get the total cost.
 
 ## Bonus Part:
 
@@ -610,10 +606,10 @@ Implement proper error handling throughout the application. Use global error han
 
 **Error Response Object Should include the following properties:**
 
-- success → false
-- message → Error Type → Validation Error, Cast Error, Duplicate Entry
-- errorMessages
-- stack
+-   success → false
+-   message → Error Type → Validation Error, Cast Error, Duplicate Entry
+-   errorMessages
+-   stack
 
 #### **Sample Error Response**
 
@@ -646,9 +642,9 @@ Implement a global "Not Found" handler for unmatched routes. When a route is not
 
 ```json
 {
-  "success": false,
-  "statusCode": 404,
-  "message": "Not Found"
+    "success": false,
+    "statusCode": 404,
+    "message": "Not Found"
 }
 ```
 
@@ -658,9 +654,9 @@ Implement an Authentication Middleware to authenticate your application. Ensures
 
 ```json
 {
-  "success": false,
-  "statusCode": 401,
-  "message": "You have no access to this route"
+    "success": false,
+    "statusCode": 401,
+    "message": "You have no access to this route"
 }
 ```
 
