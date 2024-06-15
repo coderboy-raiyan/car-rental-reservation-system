@@ -1,8 +1,10 @@
+import { compare, hash } from "bcrypt";
 import { Schema, model } from "mongoose";
+import config from "../../config";
 import UserConstants from "./user.constant";
-import { TUser } from "./user.interface";
+import { TUser, TUserModel } from "./user.interface";
 
-const userSchema = new Schema<TUser>(
+const userSchema = new Schema<TUser, TUserModel>(
     {
         name: {
             type: String,
@@ -22,6 +24,7 @@ const userSchema = new Schema<TUser>(
         password: {
             type: String,
             required: true,
+            select: 0,
         },
         phone: {
             type: String,
@@ -35,6 +38,22 @@ const userSchema = new Schema<TUser>(
     { timestamps: true }
 );
 
-const User = model<TUser>("User", userSchema);
+userSchema.pre("save", async function (next) {
+    if (this.isModified("password")) {
+        this.password = await hash(this.password, parseInt(config.BCRYPT_SALT_ROUNDS));
+    }
+    next();
+});
+
+userSchema.post("save", function (doc) {
+    doc.password = null;
+});
+
+userSchema.statics.verifyPassword = async function (plainText: string, hashedPassword: string) {
+    const isVerified = await compare(plainText, hashedPassword);
+    return isVerified;
+};
+
+const User = model<TUser, TUserModel>("User", userSchema);
 
 export default User;

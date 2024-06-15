@@ -5,6 +5,7 @@ type TResponseData<T> = {
     message: string;
     statusCode: number;
     data: T;
+    token?: string;
 };
 
 function sendResponse<T>(res: Response, { success, message, statusCode, data }: TResponseData<T>) {

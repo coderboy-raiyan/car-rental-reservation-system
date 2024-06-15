@@ -29,22 +29,34 @@ const passwordValidationSchema = z
         ) {
             checkPassComplexity.addIssue({
                 code: "custom",
-                message: "password does not meet complexity requirements",
+                message: `Password must be at least 6 characters long and include at least one lowercase letter, one uppercase letter, one special character, and one number.`,
             });
         }
     });
 
 const createUserValidationSchema = z.object({
-    name: z.string(),
-    email: z.string(),
-    role: z.array(z.enum(Object.values(UserConstants.UserRoles) as [string, ...string[]])),
-    password: passwordValidationSchema,
-    phone: z.string(),
-    address: z.string(),
+    body: z.object({
+        name: z.string(),
+        email: z.string(),
+        role: z
+            .string(z.enum(Object.values(UserConstants.UserRoles) as [string, ...string[]]))
+            .optional(),
+        password: passwordValidationSchema,
+        phone: z.string(),
+        address: z.string(),
+    }),
+});
+
+const signInUserValidationSchema = z.object({
+    body: z.object({
+        email: z.string(),
+        password: passwordValidationSchema,
+    }),
 });
 
 const UserValidations = {
     createUserValidationSchema,
+    signInUserValidationSchema,
 };
 
 export default UserValidations;
