@@ -1,4 +1,5 @@
 import { Response } from "express";
+import { StatusCodes } from "http-status-codes";
 
 type TResponseData<T> = {
     success: boolean;
@@ -20,6 +21,17 @@ function sendResponse<T>(
         token,
     };
     if (!token) delete responseObj[token];
+
+    if (
+        (Array.isArray(data) && !data.length) ||
+        (typeof data === "object" && !Object.keys(data).length)
+    ) {
+        (responseObj.success = false),
+            (responseObj.statusCode = StatusCodes.NOT_FOUND),
+            (responseObj.message = "No Data Found"),
+            (responseObj.data = [] as T);
+    }
+
     return res.status(statusCode).json(responseObj);
 }
 

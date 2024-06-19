@@ -32,11 +32,21 @@ const getUserBookings = catchAsync(async (req, res) => {
         data: result,
     });
 });
+const returnTheCarFromBooking = catchAsync(async (req, res) => {
+    const result = await BookingServices.returnTheCarFromBooking(req.body);
+    sendResponse(res, {
+        success: true,
+        statusCode: StatusCodes.OK,
+        message: "Car returned successfully",
+        data: result,
+    });
+});
 
 const BookingControllers = {
     createBooking,
     getBookings,
     getUserBookings,
+    returnTheCarFromBooking,
 };
 
 export default BookingControllers;

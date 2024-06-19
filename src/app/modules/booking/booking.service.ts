@@ -1,3 +1,4 @@
+import { compareAsc, differenceInHours } from "date-fns";
 import { StatusCodes } from "http-status-codes";
 import mongoose, { Types } from "mongoose";
 import AppError from "../../errors/AppError";
@@ -78,10 +79,78 @@ const getUserBookingFromDB = async (userId: Types.ObjectId) => {
     return result;
 };
 
+const returnTheCarFromBooking = async (payload: { bookingId: string; endTime: string }) => {
+    const { bookingId } = payload;
+
+    const booking = await Booking.findById(bookingId);
+    if (!booking) {
+        throw new AppError(StatusCodes.NOT_FOUND, "Booking not found!");
+    }
+    const car = await Car.findById(booking.car);
+    if (!car) {
+        throw new AppError(StatusCodes.NOT_FOUND, "Car not found!");
+    }
+
+    const session = await mongoose.startSession();
+
+    const startTime = new Date(`1970-01-01T${booking.startTime}:00`);
+    const endTime = new Date(`1970-01-01T${payload.endTime}:00`);
+
+    const compare = compareAsc(startTime, endTime);
+
+    if (compare === 1) {
+        throw new AppError(
+            StatusCodes.BAD_REQUEST,
+            `End time must be greater than start time : ${booking.startTime}`
+        );
+    }
+
+    const duration = differenceInHours(endTime, startTime);
+
+    const totalCost = duration * car.pricePerHour;
+
+    try {
+        session.startTransaction();
+
+        const updatedBooking = await Booking.findByIdAndUpdate(
+            bookingId,
+            { totalCost, endTime: payload.endTime },
+            { session, new: true }
+        );
+
+        if (!updatedBooking) {
+            throw new AppError(StatusCodes.BAD_REQUEST, "Failed to update booking!");
+        }
+
+        const updatedCarStatus = await Car.findByIdAndUpdate(
+            car._id,
+            { status: CarConstants.CarStatus.available },
+            { new: true, session }
+        );
+
+        if (!updatedCarStatus) {
+            throw new AppError(StatusCodes.BAD_REQUEST, "Failed to update car status!");
+        }
+
+        const updatedBookingWithReturnedCar = await Booking.findById(bookingId, {}, { session })
+            .populate("user")
+            .populate("car");
+
+        await session.commitTransaction();
+        await session.endSession();
+        return updatedBookingWithReturnedCar;
+    } catch (error) {
+        await session.abortTransaction();
+        await session.endSession();
+        throw new Error(error);
+    }
+};
+
 const BookingServices = {
     createBookingIntoDB,
     getAllBookingFromDB,
     getUserBookingFromDB,
+    returnTheCarFromBooking,
 };
 
 export default BookingServices;
