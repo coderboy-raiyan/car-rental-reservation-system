@@ -1,7 +1,7 @@
 import { StatusCodes } from "http-status-codes";
 import config from "../../config";
 import catchAsync from "../../utils/catchAsync";
-import sendResponse from "../../utils/sendReponse";
+import sendResponse from "../../utils/sendResponse";
 import UserServices from "./user.service";
 
 const registerUser = catchAsync(async (req, res) => {
