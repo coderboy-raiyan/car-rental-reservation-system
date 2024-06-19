@@ -11,7 +11,7 @@ function handleMongoDBDuplicateError(error: any): TGenericErrorResponse {
         },
     ];
     return {
-        statusCode: StatusCodes.NOT_ACCEPTABLE,
+        statusCode: StatusCodes.BAD_REQUEST,
         message: `${Object.values(error.keyValue)[0]} is already exists`,
         errorSources,
     };

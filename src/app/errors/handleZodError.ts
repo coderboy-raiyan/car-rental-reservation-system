@@ -12,7 +12,7 @@ function handleZodError(zodError: ZodError): TGenericErrorResponse {
 
     return {
         errorSources,
-        statusCode: StatusCodes.OK,
+        statusCode: StatusCodes.BAD_REQUEST,
         message: "Validation error",
     };
 }
