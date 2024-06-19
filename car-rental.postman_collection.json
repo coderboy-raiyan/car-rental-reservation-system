@@ -1,0 +1,368 @@
+{
+	"info": {
+		"_postman_id": "66aa1a4d-5818-4aca-b18d-592a0992a1dd",
+		"name": "car-rental",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16692702"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Raiyan\",\r\n    \"email\": \"raiyan@admin.com\",\r\n    \"password\": \"Password123!\",\r\n    \"role\" : \"admin\",\r\n    \"phone\": \"1234567890\",\r\n    \"address\": \"123 Main St, City, Country\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/signup",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "signin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \r\n    \"email\":\"raiyan@admin.com\",\r\n    \"password\": \"Password123!\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/signin",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "car",
+			"item": [
+				{
+					"name": "create-car",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjcyZTRkODIxYmZiY2NjOTdkZTRiOWYiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTg4MDYwNjgsImV4cCI6MTcxODg5MjQ2OH0.Ish0y80CXD9N_i-zP3qnLtlxMuN2ZIN75FtgWSkDZI0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Tesla Model X\",\r\n  \"description\": \"An electric car with advanced technology and performance.\",\r\n  \"color\": \"White\",\r\n  \"isElectric\": true,\r\n  \"features\": [\"AC\", \"Bluetooth\", \"Long Range Battery\"],\r\n  \"pricePerHour\": 500\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/cars",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"cars"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-all-cars",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/cars",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"cars"
+							],
+							"query": [
+								{
+									"key": "isElectric",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "searchTerm",
+									"value": "3",
+									"disabled": true
+								},
+								{
+									"key": "fields",
+									"value": "name,color,features",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "pricePerHour",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "return-car",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjcyZGZlY2JmMTU4NTE3ZmE1OGQ2MTciLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTg4MDQ0NjUsImV4cCI6MTcxODg5MDg2NX0.ZJc7g_1xQBRuSn6kfDcRMAovCiuprb_sv6JepidO0RE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"bookingId\": \"6672e04fbf158517fa58d626\",\r\n   \"endTime\": \"15:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/cars/return",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"cars",
+								"return"
+							],
+							"query": [
+								{
+									"key": "isElectric",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "searchTerm",
+									"value": "3",
+									"disabled": true
+								},
+								{
+									"key": "fields",
+									"value": "name,color,features",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "pricePerHour",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-single-car",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/cars/6672dffdbf158517fa58d61c",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"cars",
+								"6672dffdbf158517fa58d61c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-car",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"color\" : \"red\",\r\n    \"pricePerHour\": 1200\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/cars/666dbaacb2bce823c202e23b",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"cars",
+								"666dbaacb2bce823c202e23b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete-car",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"color\" : \"red\",\r\n    \"pricePerHour\": 1200\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/cars/666dbaacb2bce823c202e23b",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"cars",
+								"666dbaacb2bce823c202e23b"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "booking",
+			"item": [
+				{
+					"name": "create-booking",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjcyZTAyMWJmMTU4NTE3ZmE1OGQ2MWYiLCJyb2xlIjoidXNlciIsImlhdCI6MTcxODgwNDUyMywiZXhwIjoxNzE4ODkwOTIzfQ.4484VLa8S4fBcQNHwXLG2Z61FzGeY49Zn78AW5oezDk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"carId\": \"6672dffdbf158517fa58d61c\",\r\n   \"date\": \"2024-06-15\",\r\n   \"startTime\": \"13:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/bookings",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-all-bookings",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjcyZTRkODIxYmZiY2NjOTdkZTRiOWYiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTg4MDU3MjQsImV4cCI6MTcxODg5MjEyNH0.OpWepOlj6_7ZDuTnx3u_oeh4QIAEZ2s5tjRJD5ipXoY",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/bookings",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"bookings"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "2024-06-15",
+									"disabled": true
+								},
+								{
+									"key": "carId",
+									"value": "66729278f238d7e78cf1407f",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-my-bookings",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjcyOTE0YWQ4NDQzMDgxOTJhYWU4NTQiLCJyb2xlIjoidXNlciIsImlhdCI6MTcxODc5ODgyNywiZXhwIjoxNzE4ODg1MjI3fQ.FCmCAJQh7KQpreJjyahN_wFpNbHvszIhk1EkykeWgz8",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/bookings/my-bookings",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"bookings",
+								"my-bookings"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
