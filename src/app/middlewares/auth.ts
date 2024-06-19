@@ -28,7 +28,10 @@ function auth(role: TUserRoles[]) {
             throw new AppError(StatusCodes.UNAUTHORIZED, "You have no access to this route");
         }
 
-        const user = await User.findById(isVerified?.id);
+        const user = await User.findById(isVerified?._id);
+        if (!user) {
+            throw new AppError(StatusCodes.UNAUTHORIZED, "Invalid credentials. Please sign up!");
+        }
         req.user = user;
         next();
     });
