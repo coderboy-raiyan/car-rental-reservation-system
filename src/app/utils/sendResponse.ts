@@ -14,6 +14,7 @@ function sendResponse<T>(
 ) {
     const responseObj = {
         success,
+        statusCode,
         message,
         data,
         token,

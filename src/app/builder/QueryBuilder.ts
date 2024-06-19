@@ -50,11 +50,22 @@ class QueryBuilder<T> {
         return this;
     }
 
-    filter() {
+    filter(
+        customFilter: Record<string, unknown> = {},
+        renameFields: { originalField: string; queryInputField: string }[] = []
+    ) {
         const copyQuery = { ...this.query };
         const excludeFields = ["searchTerm", "page", "limit", "sort", "fields"];
         excludeFields.forEach((field) => delete copyQuery[field]);
-        this.ModelQuery = this.ModelQuery.find(copyQuery as FilterQuery<T>);
+
+        if (renameFields && renameFields.length) {
+            renameFields.forEach((field) => {
+                copyQuery[field.originalField] = copyQuery[field.queryInputField];
+                delete copyQuery[field.queryInputField];
+            });
+        }
+
+        this.ModelQuery = this.ModelQuery.find({ ...copyQuery, ...customFilter } as FilterQuery<T>);
         return this;
     }
 
