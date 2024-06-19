@@ -8,12 +8,18 @@ type TResponseData<T> = {
     token?: string;
 };
 
-function sendResponse<T>(res: Response, { success, message, statusCode, data }: TResponseData<T>) {
-    return res.status(statusCode).json({
+function sendResponse<T>(
+    res: Response,
+    { success, message, statusCode, data, token }: TResponseData<T>
+) {
+    const responseObj = {
         success,
         message,
         data,
-    });
+        token,
+    };
+    if (!token) delete responseObj[token];
+    return res.status(statusCode).json(responseObj);
 }
 
 export default sendResponse;
