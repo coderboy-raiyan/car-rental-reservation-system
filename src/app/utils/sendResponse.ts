@@ -32,7 +32,7 @@ function sendResponse<T>(
             (responseObj.data = [] as T);
     }
 
-    return res.status(statusCode).json(responseObj);
+    return res.status(responseObj.statusCode).json(responseObj);
 }
 
 export default sendResponse;
