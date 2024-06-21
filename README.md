@@ -1,5 +1,8 @@
 # Car Rental Reservation System
 
+[Live Server Link](https://car-rental-backend-one.vercel.app/)
+[Video Example](https://youtu.be/mbk0VyPaDBY?si=kD-9yM0O4W7Z0ia5)
+
 ## Story
 
 Imagine you own a car rental business. To keep track of your cars and manage customer rentals, you've decided to built a web app with a database designed based on the following models:
